@@ -50,47 +50,58 @@
     </div>
 
     <script>
-        (function () {
-            const _0x1a2b = new URLSearchParams(window["location"]["search"]);
-            const _0x3c4d = _0x1a2b.get(atob("c2l0ZQ=="));
-            const _0x5e6f = _0x1a2b.get(atob("c2t1"));
 
-            const _q = document.querySelector.bind(document);
-            const _g = document.getElementById.bind(document);
-            const _a = function (x) { return atob(x); };
+        const urlParams = new URLSearchParams(window.location.search);
+        const site = urlParams.get('site');
+        const sku = urlParams.get('sku');
 
-            _q(_a("LmNvbnRpbnVl")).addEventListener("click", function () {
-                if (_0x3c4d === _a("ZWI=")) {
-                    _q(_a("LmViZm9ybQ==")).requestSubmit();
-                } else if (_0x3c4d === _a("emluZw==")) {
-                    _q(_a("Lnppbmdmb3Jt")).requestSubmit();
-                } else {
-                    alert(_a("SW52YWxpZCBzaXRl"));
-                    top["location"]["href"] = _a("aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS5hdQ==");
-                }
-            });
-
-            if (_0x5e6f !== null && _0x5e6f !== '') {
-                if (_0x3c4d === _a("ZWI=")) {
-                    _g(_a("ZWI=")).addEventListener("submit", function (_x) {
-                        window.open(_a("aHR0cHM6Ly93d3cuZWJnYW1lcy5jb20uYXUvY2hlY2tvdXQ="), "_blank").focus();
-                    });
-                    _q(_a("I2Vi")).querySelector(_a("I3NrdQ==")).value = _0x5e6f;
-                } else if (_0x3c4d === _a("emluZw==")) {
-                    _g(_a("emluZw==")).addEventListener("submit", function (_x) {
-                        window.open(_a("aHR0cHM6Ly93d3cuemluZ3BvcGN1bHR1cmUuY29tLmF1L2NoZWNrb3V0"), "_blank").focus();
-                    });
-                    _q(_a("I3ppbmc=")).querySelector(_a("I3NrdQ==")).value = _0x5e6f;
-                } else {
-                    alert(_a("SW52YWxpZCBzaXRl"));
-                    top["location"]["href"] = _a("aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS5hdQ==");
-                }
+        document.querySelector('.continue').addEventListener('click', function () {
+            if (site === 'eb') {
+                document.querySelector('.ebform').requestSubmit();
+            } else if (site === 'zing') {
+                document.querySelector('.zingform').requestSubmit();
             } else {
-                alert(_a("SW52YWxpZCBTS1U="));
-                top["location"]["href"] = _a("aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS5hdQ==");
+                alert('Invalid site');
+                window.location.href = 'https://www.google.com.au';
             }
-        })();
+        });
+
+        if (sku !== null && sku !== '') {
+            if (site === 'eb') {
+
+                document.getElementById("eb").addEventListener("submit", function (e) {
+                    window.open('https://www.ebgames.com.au/checkout', '_blank').focus();
+
+                });
+
+                document.querySelector('#eb').querySelector("#sku").value = sku;
+
+                // document.querySelector('.ebform').requestSubmit()
+
+            }
+
+            else if (site === 'zing') {
+
+                document.getElementById("zing").addEventListener("submit", function (e) {
+                    window.open('https://www.zingpopculture.com.au/checkout', '_blank').focus();
+
+                });
+
+                document.querySelector('#zing').querySelector("#sku").value = sku;
+
+                // document.querySelector('.zingform').requestSubmit()
+            }
+            else {
+                alert('Invalid site');
+                window.location.href = 'https://www.google.com.au';
+            }
+        } else {
+            alert('Invalid SKU');
+            window.location.href = 'https://www.google.com.au';
+        }
+
     </script>
+
 
 </body>
 
