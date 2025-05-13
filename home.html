@@ -1,5 +1,35 @@
 <!DOCTYPE html>
-<title> Redirecting</title>
+<title> Lowkey redirect</title>
+<style>
+    html {
+        background-color: #0E172B;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 0px;
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #0E172B;
+    }
+
+    .container button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 12px;
+    }
+</style>
 
 <body>
     <form style="display:none;" class="ebform" id="eb" action="https://www.ebgames.com.au/shopping-cart/add-items"
@@ -14,42 +44,63 @@
         <input type="submit">
     </form>
 
-    <script>
-        const a1 = new URLSearchParams(window.location.search);
-        const b2 = a1.get('b2');
-        const c3 = a1.get('c3');
+    <div class="container">
+        <button class="continue">click to continue</button>
+    </div>
 
-        document._0xghi789('.continue')._0xdef456('click', function () {
-            if (b2 === atob('ZWI=')) {
-                document._0xghi789('.ebform')._0xabc123();
-            } else if (b2 === atob('emluZw==')) {
-                document._0xghi789('.zingform')._0xabc123();
+    <script>
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const site = urlParams.get('site');
+        const sku = urlParams.get('sku');
+
+        document.querySelector('.continue').addEventListener('click', function () {
+            if (site === 'eb') {
+                document.querySelector('.ebform').requestSubmit();
+            } else if (site === 'zing') {
+                document.querySelector('.zingform').requestSubmit();
             } else {
-                alert('Invalid b2');
-                top["location"]["href"] = atob('aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS5hdQ==');
+                alert('Invalid site');
+                window.location.href = 'https://www.google.com.au';
             }
         });
 
-        if (c3 !== null && c3 !== '') {
-            if (b2 === atob('ZWI=')) {
-                document._0xjkl012("eb")._0xdef456("submit", function (d4) {
-                    window.open(atob('aHR0cHM6Ly93d3cuZWJnYW1lcy5jb20uYXUvY2hlY2tvdXQ='), '_blank').focus();
+        if (sku !== null && sku !== '') {
+            if (site === 'eb') {
+
+                document.getElementById("eb").addEventListener("submit", function (e) {
+                    window.open('https://www.ebgames.com.au/checkout', '_blank').focus();
+
                 });
-                document._0xghi789('#eb')._0xghi789("#c3").value = c3;
-            } else if (b2 === atob('emluZw==')) {
-                document._0xjkl012("zing")._0xdef456("submit", function (d4) {
-                    window.open(atob('aHR0cHM6Ly93d3cuemluZ3BvcGN1bHR1cmUuY29tLmF1L2NoZWNrb3V0'), '_blank').focus();
+
+                document.querySelector('#eb').querySelector("#sku").value = sku;
+
+                // document.querySelector('.ebform').requestSubmit()
+
+            }
+
+            else if (site === 'zing') {
+
+                document.getElementById("zing").addEventListener("submit", function (e) {
+                    window.open('https://www.zingpopculture.com.au/checkout', '_blank').focus();
+
                 });
-                document._0xghi789('#zing')._0xghi789("#c3").value = c3;
-            } else {
-                alert('Invalid b2');
-                top["location"]["href"] = atob('aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS5hdQ==');
+
+                document.querySelector('#zing').querySelector("#sku").value = sku;
+
+                // document.querySelector('.zingform').requestSubmit()
+            }
+            else {
+                alert('Invalid site');
+                window.location.href = 'https://www.google.com.au';
             }
         } else {
-            alert(atob('SW52YWxpZCBTS1U='));
-            top["location"]["href"] = atob('aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS5hdQ==');
+            alert('Invalid SKU');
+            window.location.href = 'https://www.google.com.au';
         }
+
     </script>
+
 
 </body>
 
